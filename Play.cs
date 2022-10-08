@@ -21,10 +21,10 @@ namespace Projekt
             Player player1 = FirstPlayer();
             string choice = SecondPlayer();
             int result = Choice(choice, player1);
-            if(result == 3)
+            while(result == 3)
             {
                 choice = SecondPlayer();
-                Choice(choice, player1);
+                result = Choice(choice, player1);
             }
             Rules();
 
