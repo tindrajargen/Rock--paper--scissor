@@ -56,7 +56,7 @@ namespace Projekt
                     Player player2 = new Player(Console.ReadLine());
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +
-                        $" and {player2.name}");
+                        $" and {player2.name}!");
 
                     returnValue = 1;
                     return returnValue;
@@ -78,6 +78,13 @@ namespace Projekt
         }
         private void Rules()
         {
+
+            Console.WriteLine("\nThe outcome of the game is determined by 3 simple rules: " +
+            "\n* Rock wins against scissors. " +
+            "\n* Scissors win against paper. " +
+            "\n* Paper wins against rock.\n" +
+            "\nThe first playser to win three rounds wins the game!");
+
 
         }
 
