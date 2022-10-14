@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    internal interface IMove
+    interface IMove
     {
+        //Move move {get; set;}
     }
 }
