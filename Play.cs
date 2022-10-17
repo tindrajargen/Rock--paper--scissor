@@ -17,31 +17,28 @@ namespace Projekt
         {
 
         }
-
-        public void RunningGame()
+        public void StartGame()
         {
             Player player1 = FirstPlayer();
-            string choice = SecondPlayer();
-            int result = Choice(choice, player1);
+            string choice= SecondPlayer();
+            int result = Choice(player1, choice);
             while(result == 3)
             {
                 choice = SecondPlayer();
-                result = Choice(choice, player1);
+                result = Choice(player1, choice);
             }
-            Rules();
-            Turn turn = new Turn();
-
-            while(turn.CheckPoints(player1, player2) < 3)
+            if(result == 1)
             {
-                MakeMove(turn);
-                turn.ChangeTurn();
+                IPlay playFriend = new PlayFriend(player1, player2);
+                playFriend.RunningGame();
             }
-            Winner winner = new Winner(player1, player2);
-            Console.WriteLine(winner.declareWinner());
-
+            else
+            {
+                //gå till playcomputer
+            }
 
         }
-        private Player FirstPlayer()
+         private Player FirstPlayer()
         {
             Console.WriteLine("Welcome to Rock, paper, scissors!\n" +
             "Please enter the first player's name:");
@@ -59,9 +56,10 @@ namespace Projekt
             string choice = Console.ReadLine();
             return choice;
         }
-        private int Choice(string choice, Player player1)
+        private int Choice(Player player1, string choice)
         {
             int returnValue;
+
             switch (choice)
             {
                 case "1":
@@ -71,6 +69,7 @@ namespace Projekt
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +
                         $" and {player2.name}!");
+                    Rules();
 
                     returnValue = 1;
                     return returnValue;
@@ -78,6 +77,7 @@ namespace Projekt
                 case "2":
                     Console.WriteLine($"The game will now start between {player1.name}" +
                         $" and the computer!");
+                    Rules();
 
                     returnValue = 2;
                     return returnValue;
@@ -87,109 +87,9 @@ namespace Projekt
 
                     returnValue = 3;
                     return returnValue;
-                    
-
             }
         }
-        private string MakingMove(Player p){
-            Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
-            $"\n1.Rock\n2.Paper\n3.Scissors");
-            string move = Console.ReadLine();
-            return move;
-        }
-        private int SaveMove(string move, Player p){
-            Console.WriteLine($"\n{p.name}, you have made your move.");
-                int intMove = int.Parse(move);
-                Move pMove = new Move(intMove);
-                int madeMove = pMove.getMove(pMove);
-                return madeMove;   
-        }
-        private void MakeMove(Turn turn){
-            int p1Move = 0;
-            int p2Move = 0;
 
-            if(turn.CheckTurn(player1, player2) == player1){
-                string move = MakingMove(player1);
-                switch(move){
-                    case "1":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    case "2":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    case "3":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
-                }
-                move = MakingMove(player2);
-                switch(move){
-                    case "1":
-                p2Move = SaveMove(move, player1);
-                    break;
-
-                    case "2":
-                p2Move = SaveMove(move, player1);
-                    break;
-
-                    case "3":
-                p2Move = SaveMove(move, player1);
-                    break;
-
-                    default:
-                    Console.WriteLine("\nThat is not a possible move.");
-                    break;
-                }
-            }
-            else{
-                string move = MakingMove(player2);
-                switch(move){
-                    case "1":
-                p2Move = SaveMove(move, player1);
-
-                    break;
-
-                    case "2":
-                p2Move = SaveMove(move, player1);
-                    break;
-
-                    case "3":
-                p2Move = SaveMove(move, player1);
-                    break;
-
-                    default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
-                }
-                move = MakingMove(player1);
-                switch(move){
-                    case "1":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    case "2":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    case "3":
-                p1Move = SaveMove(move, player1);
-                    break;
-
-                    default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
-                }
-                
-            }
-            Outcome outcome = new Outcome(p1Move, p2Move, player1, player2);
-            Console.WriteLine(outcome.CheckOutcome());
-
-        }
         private void Rules()
         {
 
@@ -198,8 +98,6 @@ namespace Projekt
             "\n* Scissors win against paper. " +
             "\n* Paper wins against rock.\n" +
             "\nThe first playser to win three rounds wins the game!");
-
-
         }
 
     }
