@@ -58,6 +58,7 @@ namespace Projekt
             }
             else if(p1move == 3 && p2move == 1){
                 AddPoints(p2);
+                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose scissors and {p2.name} chose rock, \nTherefore {p2.name}" +
                 $" gets 1 point.";
             }
