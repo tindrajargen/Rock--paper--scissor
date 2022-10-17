@@ -34,39 +34,33 @@ namespace Projekt
             }
             else if(p1move == 1 && p2move == 2){
                 AddPoints(p2);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose rock and {p2.name} chose paper, \nTherefore {p2.name}" +
-                $" gets 1 point.";
+                $" gets 1 point.\n {ShowPoints()}";
             }
             else if(p1move == 1 && p2move == 3){
                 AddPoints(p1);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose rock and {p2.name} chose scissors, \nTherefore {p1.name}" +
-                $" gets 1 point.";
+                $" gets 1 point.\n {ShowPoints()}";
             }
             else if(p1move == 2 && p2move == 1){
                 AddPoints(p1);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose paper and {p2.name} chose rock, \nTherefore {p1.name}" +
-                $" gets 1 point.";
+                $" gets 1 point.\n {ShowPoints()}";
             }
             else if(p1move == 2 && p2move == 3){
                 AddPoints(p2);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose paper and {p2.name} chose scissors, \nTherefore {p2.name}" +
-                $" gets 1 point.";
+                $" gets 1 point. \n {ShowPoints()}";
             }
             else if(p1move == 3 && p2move == 1){
                 AddPoints(p2);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose scissors and {p2.name} chose rock, \nTherefore {p2.name}" +
-                $" gets 1 point.";
+                $" gets 1 point.\n {ShowPoints()}";
             }
             else if(p1move == 3 && p2move == 2){
                 AddPoints(p1);
-                Console.WriteLine(ShowPoints());
                 return $"{p1.name} chose scissors and {p2.name} chose paper, \nTherefore {p1.name}" +
-                $" gets 1 point.";
+                $" gets 1 point.\n {ShowPoints()}";
             }
             else
             {
@@ -81,7 +75,7 @@ namespace Projekt
             int points1 = p1.points;
             int ponits2 = p2.points;
 
-            return $"\nScore board:\n{p1.name}: {p1.points}\n{p2.name}: {p2.points}\n";
+            return $"\nScore board:\n{p1.name}: {p1.points}\n{p2.name}: {p2.points}";
         }
     }
 }

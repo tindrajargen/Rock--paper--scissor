@@ -34,7 +34,8 @@ namespace Projekt
             }
             else
             {
-                //gå till playcomputer
+                IPlay playComputer = new PlayComputer(player1);
+                playComputer.RunningGame();
             }
 
         }
