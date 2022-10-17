@@ -36,11 +36,8 @@ namespace Projekt
                 MakeMove(turn);
                 turn.ChangeTurn();
             }
-            Console.WriteLine("SLUT");
-
-            
-
-            
+            Winner winner = new Winner(player1, player2);
+            Console.WriteLine(winner.declareWinner());
 
 
         }
