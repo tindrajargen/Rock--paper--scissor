@@ -18,7 +18,7 @@ namespace Projekt
 
         }
 
-        public void startGame()
+        public void RunningGame()
         {
             Player player1 = FirstPlayer();
             string choice = SecondPlayer();
@@ -94,57 +94,54 @@ namespace Projekt
 
             }
         }
+        private string MakingMove(Player p){
+            Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
+            $"\n1.Rock\n2.Paper\n3.Scissors");
+            string move = Console.ReadLine();
+            return move;
+        }
+        private int SaveMove(string move, Player p){
+            Console.WriteLine($"\n{p.name}, you have made your move.");
+                int intMove = int.Parse(move);
+                Move pMove = new Move(intMove);
+                int madeMove = pMove.getMove(pMove);
+                return madeMove;   
+        }
         private void MakeMove(Turn turn){
             int p1Move = 0;
             int p2Move = 0;
 
             if(turn.CheckTurn(player1, player2) == player1){
-                Console.WriteLine($"\n{player1.name} it is your turn, what move do you want to make?" +
-                 $"\n1.Rock\n2.Paper\n3.Scissors");
-                string move1 = Console.ReadLine();
-                switch(move1){
+                string move = MakingMove(player1);
+                switch(move){
                     case "1":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move1 = new Move(1);
-                p1Move = p1Move1.getMove(p1Move1);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     case "2":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move2 = new Move(2);
-                p1Move = p1Move2.getMove(p1Move2);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     case "3":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move3 = new Move(3);
-                p1Move = p1Move3.getMove(p1Move3);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     default:
                     Console.WriteLine("That is not a possible move.");
                     break;
                 }
-                Console.WriteLine($"\n{player2.name} it is your turn, what move do you want to make?" +
-                 $"\n1.Rock\n2.Paper\n3.Scissors");
-                string move2 = Console.ReadLine();
-                switch(move2){
+                move = MakingMove(player2);
+                switch(move){
                     case "1":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move1 = new Move(1);
-                p2Move = p2Move1.getMove(p2Move1);
+                p2Move = SaveMove(move, player1);
                     break;
 
                     case "2":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move2 = new Move(2);
-                p2Move = p2Move2.getMove(p2Move2);
+                p2Move = SaveMove(move, player1);
                     break;
 
                     case "3":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move3 = new Move(3);
-                p2Move = p2Move3.getMove(p2Move3);
+                p2Move = SaveMove(move, player1);
                     break;
 
                     default:
@@ -153,55 +150,37 @@ namespace Projekt
                 }
             }
             else{
-                Console.WriteLine($"\n{player2.name} it is your turn, what move do you want to make?" +
-                 $"\n1.Rock\n2.Paper\n3.Scissors");
-                string move1 = Console.ReadLine();
-                switch(move1){
+                string move = MakingMove(player2);
+                switch(move){
                     case "1":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move1 = new Move(1);
-                p2Move = p2Move1.getMove(p2Move1);
+                p2Move = SaveMove(move, player1);
 
                     break;
 
                     case "2":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move2 = new Move(2);
-                p2Move = p2Move2.getMove(p2Move2);
-
+                p2Move = SaveMove(move, player1);
                     break;
 
                     case "3":
-                Console.WriteLine($"\n{player2.name}, you have made your move.");
-                Move p2Move3 = new Move(3);
-                p2Move = p2Move3.getMove(p2Move3);
-
+                p2Move = SaveMove(move, player1);
                     break;
 
                     default:
                     Console.WriteLine("That is not a possible move.");
                     break;
                 }
-                Console.WriteLine($"\n{player1.name} it is your turn, what move do you want to make?" +
-                 $"\n1.Rock\n2.Paper\n3.Scissors");
-                string move2 = Console.ReadLine();
-                switch(move2){
+                move = MakingMove(player1);
+                switch(move){
                     case "1":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move1 = new Move(1);
-                p1Move = p1Move1.getMove(p1Move1);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     case "2":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move2 = new Move(2);
-                p1Move = p1Move2.getMove(p1Move2);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     case "3":
-                Console.WriteLine($"\n{player1.name}, you have made your move.");
-                Move p1Move3 = new Move(3);
-                p1Move = p1Move3.getMove(p1Move3);
+                p1Move = SaveMove(move, player1);
                     break;
 
                     default:
