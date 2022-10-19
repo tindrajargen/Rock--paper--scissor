@@ -62,9 +62,15 @@ namespace Projekt
                 return $"{p1.name} chose scissors and {p2.name} chose paper, \nTherefore {p1.name}" +
                 $" gets 1 point.\n {ShowPoints()}";
             }
-            else
+            else if(p1move != 1 && p1move != 2 && p1move != 3)
             {
-                return"Something went wrong!";
+                AddPoints(p2);
+                return$"\n{p1.name} you made an invalid move, \nTherefore {p2.name} gets 1 point.\n{ShowPoints()}";
+            }
+            else      
+            {
+                AddPoints(p1);
+                return$"\n{p2.name} you made an invalid move, \nTherefore {p1.name} gets 1 point.\n{ShowPoints()}";
             }
             
         }
