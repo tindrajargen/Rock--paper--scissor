@@ -69,13 +69,15 @@ namespace Projekt
             
         }
         private void AddPoints(Player winner){
-            winner.points++;
+            winner.point.Notify2();
         }
         private string ShowPoints(){
-            int points1 = p1.points;
-            int ponits2 = p2.points;
+            p1.point.Notify();
+            p2.point.Notify();
+            int points1 = p1.point.Score;
+            int points2 = p2.point.Score;
 
-            return $"\nScore board:\n{p1.name}: {p1.points}\n{p2.name}: {p2.points}";
+            return $"\nScore board:\n{p1.name}: {points1}\n{p2.name}: {points2}";
         }
     }
 }

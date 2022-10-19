@@ -15,7 +15,12 @@ namespace Projekt
         public void RunningGame()
         {
             Turn turn = new Turn();
-            Player computer = new Player("Computer");
+
+            GamePoint scoreCom = new GamePoint();
+            PointKeeper scoreBoardCom = new PointKeeper(scoreCom);
+            scoreCom.Add(scoreBoardCom);
+
+            Player computer = new Player("Computer", scoreCom);
             this.computer = computer;
 
             while(turn.CheckPoints(player1, computer) < 3)

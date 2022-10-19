@@ -23,8 +23,10 @@ namespace Projekt
         }
         
         public int CheckPoints(Player p1, Player p2){
-            int p1Points = p1.points;
-            int p2Points = p2.points;
+            p1.point.Notify();
+            p2.point.Notify();
+            int p1Points = p1.point.Score;
+            int p2Points = p2.point.Score;
 
             if(p1Points > p2Points)
             {

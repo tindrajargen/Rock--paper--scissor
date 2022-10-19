@@ -9,11 +9,12 @@ namespace Projekt
     internal class Player
     {
         public string name;
-        public int points;
+        public GamePoint point;
 
-        public Player(string name)
+        public Player(string name, GamePoint point)
         {
             this.name = name;
+            this.point = point;
 
         }
 

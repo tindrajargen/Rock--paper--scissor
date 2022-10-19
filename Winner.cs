@@ -23,7 +23,7 @@ namespace Projekt
 
         private void getWinner()
         {
-            if(p1.points == 3)
+            if(p1.point.Score == 3)
             {
                 this.winner = p1;
             }
