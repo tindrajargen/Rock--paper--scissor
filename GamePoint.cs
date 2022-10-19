@@ -16,12 +16,12 @@ namespace Projekt
         List<IObserver> Observer = new List<IObserver>();
         public void Add(IObserver observ)
         {
-          this.Observer.Add();
+          this.Observer.Add(observ);
 
         }
         public void Remove(IObserver observ)
         {
-          this.Observer.Remove();
+          this.Observer.Remove(observ);
         }
 
         public void Notify()

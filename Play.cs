@@ -72,7 +72,7 @@ namespace Projekt
                     Console.WriteLine("Please enter the second player's name:");
 
                     GamePoint scoreP2 = new GamePoint();
-                    PointKeeper scoreBoardP2 = new PointKeeper(scoreP1);
+                    PointKeeper scoreBoardP2 = new PointKeeper(scoreP2);
                     scoreP2.Add(scoreBoardP2);
 
                     Player player2 = new Player(Console.ReadLine(), scoreP2);

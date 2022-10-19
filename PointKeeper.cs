@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
-    class VisualScoreBoard: IObserver
+    class PointKeeper: IObserver
     {
         GamePoint point;
-        public VisualScoreBoard(GamePoint point)
+        public PointKeeper(GamePoint point)
         {
           this.point = point;
         }
