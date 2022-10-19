@@ -43,7 +43,12 @@ namespace Projekt
         {
             Console.WriteLine("Welcome to Rock, paper, scissors!\n" +
             "Please enter the first player's name:");
-            Player player1 = new Player(Console.ReadLine());
+
+            GamePoint scoreP1 = new GamePoint();
+            PointKeeper scoreBoardP1 = new PointKeeper(scoreP1);
+            scoreP1.Add(scoreBoardP1);
+
+            Player player1 = new Player(Console.ReadLine(), scoreP1);
             this.player1 = player1;
             Console.WriteLine();
             return player1;
@@ -65,7 +70,12 @@ namespace Projekt
             {
                 case "1":
                     Console.WriteLine("Please enter the second player's name:");
-                    Player player2 = new Player(Console.ReadLine());
+
+                    GamePoint scoreP2 = new GamePoint();
+                    PointKeeper scoreBoardP2 = new PointKeeper(scoreP1);
+                    scoreP2.Add(scoreBoardP2);
+
+                    Player player2 = new Player(Console.ReadLine(), scoreP2);
                     this.player2 = player2;
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +
