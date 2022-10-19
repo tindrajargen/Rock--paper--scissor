@@ -34,10 +34,19 @@ namespace Projekt
         }
         private int SaveMove(string move, Player p){
             Console.WriteLine($"\n{p.name}, you have made your move.\n");
+            try
+            {
                 int intMove = int.Parse(move);
                 Move pMove = new Move(intMove);
                 int madeMove = pMove.getMove(pMove);
                 return madeMove;   
+            }
+            catch(FormatException)
+            {
+                return -1;
+            }
+
+
         }
         private void MakeMove(Turn turn){
             int p1Move = 0;
@@ -58,9 +67,9 @@ namespace Projekt
                 p1Move = SaveMove(move, player1);
                     break;
 
-                    default:
+                    /*default:
                     Console.WriteLine("That is not a possible move.");
-                    break;
+                    break;*/
                 }
                 move = MakingMove(player2);
                 switch(move){
@@ -76,9 +85,9 @@ namespace Projekt
                 p2Move = SaveMove(move, player2);
                     break;
 
-                    default:
-                    Console.WriteLine("\nThat is not a possible move.");
-                    break;
+                    /*default:
+                    Console.WriteLine("That is not a possible move.");
+                    break;*/
                 }
             }
             else{
@@ -97,9 +106,9 @@ namespace Projekt
                 p2Move = SaveMove(move, player2);
                     break;
 
-                    default:
+                    /*default:
                     Console.WriteLine("That is not a possible move.");
-                    break;
+                    break;*/
                 }
                 move = MakingMove(player1);
                 switch(move){
@@ -115,9 +124,9 @@ namespace Projekt
                 p1Move = SaveMove(move, player1);
                     break;
 
-                    default:
+                    /*default:
                     Console.WriteLine("That is not a possible move.");
-                    break;
+                    break;*/
                 }
                 
             }
