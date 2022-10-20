@@ -34,17 +34,13 @@ namespace Projekt
         }
         private int SaveMove(string move, Player p){
             Console.WriteLine($"\n{p.name}, you have made your move.\n");
-            try
-            {
+            
                 int intMove = int.Parse(move);
                 Move pMove = new Move(intMove);
                 int madeMove = pMove.getMove(pMove);
                 return madeMove;   
-            }
-            catch(FormatException)
-            {
-                return -1;
-            }
+            
+
 
 
         }
@@ -67,9 +63,9 @@ namespace Projekt
                 p1Move = SaveMove(move, player1);
                     break;
 
-                    /*default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;*/
+                    default:
+                    Console.WriteLine("That is an invalid move.");
+                    break;
                 }
                 move = MakingMove(player2);
                 switch(move){
@@ -85,9 +81,9 @@ namespace Projekt
                 p2Move = SaveMove(move, player2);
                     break;
 
-                    /*default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;*/
+                    default:
+                    Console.WriteLine("That is an invalid move.");
+                    break;
                 }
             }
             else{
@@ -106,9 +102,9 @@ namespace Projekt
                 p2Move = SaveMove(move, player2);
                     break;
 
-                    /*default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;*/
+                    default:
+                    Console.WriteLine("That is an invalid move.");
+                    break;
                 }
                 move = MakingMove(player1);
                 switch(move){
@@ -124,9 +120,9 @@ namespace Projekt
                 p1Move = SaveMove(move, player1);
                     break;
 
-                    /*default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;*/
+                    default:
+                    Console.WriteLine("That is an invalid move.");
+                    break;
                 }
                 
             }
