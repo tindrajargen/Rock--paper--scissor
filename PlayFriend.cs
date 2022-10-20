@@ -32,21 +32,21 @@ namespace Projekt
             string move = Console.ReadLine();
             return move;
         }
-        private int SaveMove(string move, Player p){
+        private ICompareRPS SaveMove(string move, Player p){
             Console.WriteLine($"\n{p.name}, you have made your move.\n");
             
                 int intMove = int.Parse(move);
-                Move pMove = new Move(intMove);
-                int madeMove = pMove.getMove(pMove);
-                return madeMove;   
+                ICompareRPS pMove = new Move(intMove);
+                //int madeMove = pMove.getMove(pMove);
+                return pMove;   
             
 
 
 
         }
         private void MakeMove(Turn turn){
-            int p1Move = 0;
-            int p2Move = 0;
+            ICompareRPS p1Move = new Move(0);
+            ICompareRPS p2Move = new Move(0);
 
             if(turn.CheckTurn(player1, player2) == player1){
                 string move = MakingMove(player1);
@@ -126,8 +126,23 @@ namespace Projekt
                 }
                 
             }
-            Outcome outcome = new Outcome(p1Move, p2Move, player1, player2);
-            Console.WriteLine(outcome.CheckOutcome());
+            ICompare<ICompareRPS> outcome = new Outcome(player1, player2);
+            int winner = outcome.CheckOutcome(p1Move, p2Move);
+            if(winner == 1)
+            {
+               player1.PrintRoundWinnerMessage();
+            }
+            else if(winner == 2)
+            {
+               player2.PrintRoundWinnerMessage();
+            }
+            else
+            {
+               Console.WriteLine("You both made the same move, therefore no points are given");
+            }
+
+
+
 
         }
 
