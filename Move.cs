@@ -7,7 +7,7 @@ using static Projekt.IMove;
 
 namespace Projekt
 {
-     class Move: IMove
+     class Move: ICompareRPS
     {
         private int move;
 
@@ -15,9 +15,9 @@ namespace Projekt
             this.move = move;
         }
 
-        public int getMove(Move wantedMove)
+        public int GetMove()
         {
-            return wantedMove.move;
+            return this.move;
         }
     }
 }

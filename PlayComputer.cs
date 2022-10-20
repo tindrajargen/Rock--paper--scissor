@@ -23,7 +23,7 @@ namespace Projekt
             Player computer = new Player("Computer", scoreCom);
             this.computer = computer;
 
-            while(turn.CheckPoints(player1, computer) < 3)
+            while (turn.CheckPoints(player1, computer) < 3)
             {
                 MakeMove(turn);
                 turn.ChangeTurn();
@@ -31,7 +31,8 @@ namespace Projekt
             Winner winner = new Winner(player1, computer);
             Console.WriteLine(winner.declareWinner());
         }
-        private string MakingMove(Player p){
+        private string MakingMove(Player p)
+        {
             Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
             $"\n1.Rock\n2.Paper\n3.Scissors\n");
             string move = Console.ReadLine();
@@ -44,97 +45,119 @@ namespace Projekt
             string move = intMove.ToString();
             return move;
         }
-        private int SaveMove(string move, Player p){
+        private ICompareRPS SaveMove(string move, Player p)
+        {
             Console.WriteLine($"\n{p.name}, you have made your move.\n");
-                int intMove = int.Parse(move);
-                Move pMove = new Move(intMove);
-                int madeMove = pMove.getMove(pMove);
-                return madeMove;   
-        }
-        private void MakeMove(Turn turn){
-            int p1Move = 0;
-            int comMove = 0;
 
-            if(turn.CheckTurn(player1, computer) == player1){
+            int intMove = int.Parse(move);
+            ICompareRPS pMove = new Move(intMove);
+            //int madeMove = pMove.getMove(pMove);
+            return pMove;
+        }
+        private void MakeMove(Turn turn)
+        {
+            ICompareRPS p1Move = new Move(0);
+            ICompareRPS comMove = new Move(0);
+
+            if (turn.CheckTurn(player1, computer) == player1)
+            {
                 string move = MakingMove(player1);
-                switch(move){
+                switch (move)
+                {
                     case "1":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     case "2":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     case "3":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
+                        Console.WriteLine("That is not a possible move.");
+                        break;
                 }
                 move = ComputerMove(computer);
-                switch(move){
+                switch (move)
+                {
                     case "1":
-                comMove = SaveMove(move, computer);
-                    break;
+                        comMove = SaveMove(move, computer);
+                        break;
 
                     case "2":
-                comMove = SaveMove(move, computer);
-                    break;
+                        comMove = SaveMove(move, computer);
+                        break;
 
                     case "3":
-                comMove = SaveMove(move, computer);
-                    break;
+                        comMove = SaveMove(move, computer);
+                        break;
 
                     default:
-                    Console.WriteLine("\nThat is not a possible move.");
-                    break;
+                        Console.WriteLine("\nThat is not a possible move.");
+                        break;
                 }
             }
-            else{
+            else
+            {
                 string move = ComputerMove(computer);
-                switch(move){
+                switch (move)
+                {
                     case "1":
-                comMove = SaveMove(move, computer);
+                        comMove = SaveMove(move, computer);
 
-                    break;
+                        break;
 
                     case "2":
-                comMove = SaveMove(move, computer);
-                    break;
+                        comMove = SaveMove(move, computer);
+                        break;
 
                     case "3":
-                comMove = SaveMove(move, computer);
-                    break;
+                        comMove = SaveMove(move, computer);
+                        break;
 
                     default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
+                        Console.WriteLine("That is not a possible move.");
+                        break;
                 }
                 move = MakingMove(player1);
-                switch(move){
+                switch (move)
+                {
                     case "1":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     case "2":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     case "3":
-                p1Move = SaveMove(move, player1);
-                    break;
+                        p1Move = SaveMove(move, player1);
+                        break;
 
                     default:
-                    Console.WriteLine("That is not a possible move.");
-                    break;
+                        Console.WriteLine("That is not a possible move.");
+                        break;
                 }
-                
+
             }
-            Outcome outcome = new Outcome(p1Move, comMove, player1, computer);
-            Console.WriteLine(outcome.CheckOutcome());
+            ICompare<ICompareRPS> outcome = new Outcome(player1, computer);
+            int winner = outcome.CheckOutcome(p1Move, comMove);
+
+            if (winner == 1)
+            {
+                player1.PrintRoundWinnerMessage();
+            }
+            else if (winner == 2)
+            {
+                computer.PrintRoundWinnerMessage();
+            }
+            else
+            {
+                Console.WriteLine("You both made the same move, therefore no points are given");
+            }
 
         }
     }

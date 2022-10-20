@@ -17,6 +17,10 @@ namespace Projekt
             this.point = point;
 
         }
+        public void PrintRoundWinnerMessage()
+        {
+            Console.WriteLine($"{this.name} gets 1 point");
+        }
 
     }
 }
