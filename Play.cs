@@ -26,7 +26,7 @@ namespace Projekt
             }
             if (result == 1)
             {
-                if(player2 == null)
+                if(player2 is null)
                 {
                     throw new ArgumentNullException("Player 2 is null");
                 }
@@ -51,7 +51,7 @@ namespace Projekt
 
             string? name = Console.ReadLine();
 
-            if (name == null)
+            if (name is null)
             {
                 throw new ArgumentNullException("The name is null.");
             }
@@ -69,7 +69,7 @@ namespace Projekt
 
             string? choice = Console.ReadLine();
 
-            if (choice == null)
+            if (choice is null)
             {
                 throw new ArgumentNullException("The name is null.");
             }
@@ -90,7 +90,7 @@ namespace Projekt
 
                     string? name = Console.ReadLine();
 
-                    if (name == null)
+                    if (name is null)
                     {
                         throw new ArgumentNullException("The name is null.");
                     }

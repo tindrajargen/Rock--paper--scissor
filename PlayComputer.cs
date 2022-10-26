@@ -42,9 +42,9 @@ namespace Projekt
             $"\n1.Rock\n2.Paper\n3.Scissors\n");
             string? move = Console.ReadLine();
 
-            if(move == null)
+            if(move is null)
             {
-                throw new ArgumentNullException("The name is null.");
+                throw new ArgumentNullException("The move is null.");
             }
             return move;
         }
@@ -61,7 +61,7 @@ namespace Projekt
 
             int intMove = int.Parse(move);
             ICompareRPS pMove = new Move(intMove);
-            //int madeMove = pMove.getMove(pMove);
+
             return pMove;
         }
         private void MakeMove(Turn turn)
@@ -69,7 +69,7 @@ namespace Projekt
             ICompareRPS p1Move = new Move(0);
             ICompareRPS comMove = new Move(0);
 
-            if(computer == null)
+            if(computer is null)
             {
                 throw new ArgumentNullException("Computer is null.");
             }

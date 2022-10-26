@@ -38,9 +38,9 @@ namespace Projekt
 
             string? move = Console.ReadLine();
 
-            if(move == null)
+            if(move is null)
             {
-                throw new ArgumentNullException("The name is null.");
+                throw new ArgumentNullException("The move is null.");
             }
 
             return move;
