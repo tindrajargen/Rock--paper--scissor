@@ -5,7 +5,7 @@ namespace Projekt
     class PlayComputer : IPlay
     {
         Player player1;
-        Player computer;
+        Player? computer;
 
         public PlayComputer(Player player1)
         {
@@ -40,7 +40,12 @@ namespace Projekt
         {
             Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
             $"\n1.Rock\n2.Paper\n3.Scissors\n");
-            string move = Console.ReadLine();
+            string? move = Console.ReadLine();
+
+            if(move == null)
+            {
+                throw new ArgumentNullException("The name is null.");
+            }
             return move;
         }
         private string ComputerMove(Player computer)
@@ -63,6 +68,11 @@ namespace Projekt
         {
             ICompareRPS p1Move = new Move(0);
             ICompareRPS comMove = new Move(0);
+
+            if(computer == null)
+            {
+                throw new ArgumentNullException("Computer is null.");
+            }
 
             if (turn.CheckTurn(player1, computer) == player1)
             {

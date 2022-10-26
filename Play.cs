@@ -11,12 +11,9 @@ namespace Projekt
 {
     class Play
     {
-        Player player1;
-        Player player2;
-        public Play()
-        {
+        Player? player1;
+        Player? player2;
 
-        }
         public void StartGame()
         {
             Player player1 = FirstPlayer();
@@ -29,6 +26,10 @@ namespace Projekt
             }
             if (result == 1)
             {
+                if(player2 == null)
+                {
+                    throw new ArgumentNullException("Player 2 is null");
+                }
                 IPlay playFriend = new PlayFriend(player1, player2);
                 playFriend.RunningGame();
             }
@@ -48,7 +49,14 @@ namespace Projekt
             PointKeeper scoreBoardP1 = new PointKeeper(scoreP1);
             scoreP1.Add(scoreBoardP1);
 
-            Player player1 = new Player(Console.ReadLine(), scoreP1);
+            string? name = Console.ReadLine();
+
+            if (name == null)
+            {
+                throw new ArgumentNullException("The name is null.");
+            }
+
+            Player player1 = new Player(name, scoreP1);
             this.player1 = player1;
             Console.WriteLine();
             return player1;
@@ -59,7 +67,12 @@ namespace Projekt
             "player or against the computer?\n1: Another player\n" +
             "2: The computer");
 
-            string choice = Console.ReadLine();
+            string? choice = Console.ReadLine();
+
+            if (choice == null)
+            {
+                throw new ArgumentNullException("The name is null.");
+            }
             return choice;
         }
         private int Choice(Player player1, string choice)
@@ -75,7 +88,14 @@ namespace Projekt
                     PointKeeper scoreBoardP2 = new PointKeeper(scoreP2);
                     scoreP2.Add(scoreBoardP2);
 
-                    Player player2 = new Player(Console.ReadLine(), scoreP2);
+                    string? name = Console.ReadLine();
+
+                    if (name == null)
+                    {
+                        throw new ArgumentNullException("The name is null.");
+                    }
+
+                    Player player2 = new Player(name, scoreP2);
                     this.player2 = player2;
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +

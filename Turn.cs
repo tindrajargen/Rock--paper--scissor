@@ -10,9 +10,6 @@ namespace Projekt
     {
         bool isPlayer1 = true;
 
-        public Turn(){
-
-        }
 
         public Player CheckTurn(Player p1, Player p2){
             return (this.isPlayer1 ? p1:p2 );

@@ -35,7 +35,14 @@ namespace Projekt
         private string MakingMove(Player p){
             Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
             $"\n1.Rock\n2.Paper\n3.Scissors\n");
-            string move = Console.ReadLine();
+
+            string? move = Console.ReadLine();
+
+            if(move == null)
+            {
+                throw new ArgumentNullException("The name is null.");
+            }
+
             return move;
         }
         private ICompareRPS SaveMove(string move, Player p){
@@ -43,7 +50,6 @@ namespace Projekt
             
                 int intMove = int.Parse(move);
                 ICompareRPS pMove = new Move(intMove);
-                //int madeMove = pMove.getMove(pMove);
                 return pMove;   
             
 
