@@ -20,14 +20,14 @@ namespace Projekt
         public void StartGame()
         {
             Player player1 = FirstPlayer();
-            string choice= SecondPlayer();
+            string choice = SecondPlayer();
             int result = Choice(player1, choice);
-            while(result == 3)
+            while (result == 3)
             {
                 choice = SecondPlayer();
                 result = Choice(player1, choice);
             }
-            if(result == 1)
+            if (result == 1)
             {
                 IPlay playFriend = new PlayFriend(player1, player2);
                 playFriend.RunningGame();
@@ -39,7 +39,7 @@ namespace Projekt
             }
 
         }
-         private Player FirstPlayer()
+        private Player FirstPlayer()
         {
             Console.WriteLine("Welcome to Rock, paper, scissors!\n" +
             "Please enter the first player's name:");
@@ -80,7 +80,7 @@ namespace Projekt
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +
                         $" and {player2.name}!");
-                    Rules();
+                    tellRules();
 
                     returnValue = 1;
                     return returnValue;
@@ -88,7 +88,7 @@ namespace Projekt
                 case "2":
                     Console.WriteLine($"The game will now start between {player1.name}" +
                         $" and the computer!");
-                    Rules();
+                    tellRules();
 
                     returnValue = 2;
                     return returnValue;
@@ -101,15 +101,13 @@ namespace Projekt
             }
         }
 
-        private void Rules()
-        {
-
-            Console.WriteLine("\nThe outcome of the game is determined by 3 simple rules: " +
+        delegate void Rules();
+        Rules tellRules = () => Console.WriteLine(
+         "\nThe outcome of the game is determined by 3 simple rules: " +
             "\n* Rock wins against scissors. " +
             "\n* Scissors win against paper. " +
             "\n* Paper wins against rock.\n" +
             "\nThe first playser to win three rounds wins the game!");
-        }
 
     }
 
