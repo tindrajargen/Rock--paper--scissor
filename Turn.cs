@@ -22,20 +22,17 @@ namespace Projekt
             this.isPlayer1 = !isPlayer1;
         }
         
-        public int CheckPoints(Player p1, Player p2){
+        public List<int> ReturnPoints(Player p1, Player p2){
             p1.point.Notify();
             p2.point.Notify();
             int p1Points = p1.point.Score;
             int p2Points = p2.point.Score;
+            
+            List<int> returnList = new List<int>();
+            returnList.Add(p1Points);
+            returnList.Add(p2Points);
 
-            if(p1Points > p2Points)
-            {
-                return p1Points;
-            }
-            else
-            {
-                return p2Points;
-            }
+            return returnList;
         }
     }
 }

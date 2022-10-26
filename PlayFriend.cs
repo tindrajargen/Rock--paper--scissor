@@ -1,4 +1,7 @@
 using static Projekt.IPlay;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Projekt
 {
@@ -16,15 +19,18 @@ namespace Projekt
         {
             Turn turn = new Turn();
 
-            while(turn.CheckPoints(player1, player2) < 3)
+            List<int> highestPoint = turn.ReturnPoints(player1, player2);
+            var count = 0;
+            
+            while(count < 1)
             {
                 MakeMove(turn);
                 turn.ChangeTurn();
+                highestPoint = turn.ReturnPoints(player1, player2);
+                count = highestPoint.Count( x => x==3 );
             }
             Winner winner = new Winner(player1, player2);
             Console.WriteLine(winner.declareWinner());
-
-
         }
         private string MakingMove(Player p){
             Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +

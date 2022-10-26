@@ -23,10 +23,15 @@ namespace Projekt
             Player computer = new Player("Computer", scoreCom);
             this.computer = computer;
 
-            while (turn.CheckPoints(player1, computer) < 3)
+            List<int> highestPoint = turn.ReturnPoints(player1, computer);
+            var count = 0;
+            
+            while(count < 1)
             {
                 MakeMove(turn);
                 turn.ChangeTurn();
+                highestPoint = turn.ReturnPoints(player1, computer);
+                count = highestPoint.Count( x => x==3 );
             }
             Winner winner = new Winner(player1, computer);
             Console.WriteLine(winner.declareWinner());
