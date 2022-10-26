@@ -11,9 +11,9 @@ namespace Projekt
 {
     class Winner
     {
-        Player winner;
-        Player p1;
-        Player p2;
+        Player? winner;
+        Player? p1;
+        Player? p2;
 
         public Winner(Player p1, Player p2)
         {
@@ -23,6 +23,9 @@ namespace Projekt
 
         private void getWinner()
         {
+            if(p1 == null){
+                throw new ArgumentNullException("Player 1 is null");
+            }
             if(p1.point.Score == 3)
             {
                 this.winner = p1;
@@ -36,6 +39,10 @@ namespace Projekt
         public string declareWinner()
         {
             getWinner();
+            if(winner == null)
+            {
+                throw new ArgumentNullException("Winner is null.");
+            }
             return $"Congratulations {winner.name}, you won the game!";
         }
     }

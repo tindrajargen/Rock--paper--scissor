@@ -12,8 +12,6 @@ namespace Projekt
         Player p1;
         Player p2;
 
-        Player wrong;
-
         public Outcome(Player p1, Player p2)
         {
             this.p1 = p1;
