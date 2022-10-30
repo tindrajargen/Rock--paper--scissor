@@ -20,10 +20,8 @@ namespace Projekt
         }
         
         public List<int> ReturnPoints(Player p1, Player p2){
-            p1.point.Notify();
-            p2.point.Notify();
-            int p1Points = p1.point.Score;
-            int p2Points = p2.point.Score;
+            int p1Points = p1.pointKeeper.score;
+            int p2Points = p2.pointKeeper.score;
             
             List<int> returnList = new List<int>();
             returnList.Add(p1Points);

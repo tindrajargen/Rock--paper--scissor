@@ -13,6 +13,7 @@ namespace Projekt
     {
         Player? player1;
         Player? player2;
+        GamePoint? score;
 
         public void StartGame()
         {
@@ -35,7 +36,11 @@ namespace Projekt
             }
             else
             {
-                IPlay playComputer = new PlayComputer(player1);
+                if(score is null)
+                {
+                    throw new ArgumentNullException("score is null");
+                }
+                IPlay playComputer = new PlayComputer(player1, this.score);
                 playComputer.RunningGame();
             }
 
@@ -45,9 +50,10 @@ namespace Projekt
             Console.WriteLine("Welcome to Rock, paper, scissors!\n" +
             "Please enter the first player's name:");
 
-            GamePoint scoreP1 = new GamePoint();
-            PointKeeper scoreBoardP1 = new PointKeeper(scoreP1);
-            scoreP1.Add(scoreBoardP1);
+            GamePoint score = new GamePoint();
+            this.score = score;
+            PointKeeper scoreBoardP1 = new PointKeeper(score);
+            score.Add(scoreBoardP1);
 
             string? name = Console.ReadLine();
 
@@ -56,8 +62,9 @@ namespace Projekt
                 throw new ArgumentNullException("The name is null.");
             }
 
-            Player player1 = new Player(name, scoreP1);
+            Player player1 = new Player(name, score, scoreBoardP1);
             this.player1 = player1;
+            scoreBoardP1.SavePlayer(player1);
             Console.WriteLine();
             return player1;
         }
@@ -84,9 +91,12 @@ namespace Projekt
                 case "1":
                     Console.WriteLine("Please enter the second player's name:");
 
-                    GamePoint scoreP2 = new GamePoint();
-                    PointKeeper scoreBoardP2 = new PointKeeper(scoreP2);
-                    scoreP2.Add(scoreBoardP2);
+                    if(score is null)
+                    {
+                        throw new ArgumentNullException("Gamepoint is null.");
+                    }
+                    PointKeeper scoreBoardP2 = new PointKeeper(score);
+                    score.Add(scoreBoardP2);
 
                     string? name = Console.ReadLine();
 
@@ -95,8 +105,9 @@ namespace Projekt
                         throw new ArgumentNullException("The name is null.");
                     }
 
-                    Player player2 = new Player(name, scoreP2);
+                    Player player2 = new Player(name, score, scoreBoardP2);
                     this.player2 = player2;
+                    scoreBoardP2.SavePlayer(player2);
                     Console.WriteLine();
                     Console.WriteLine($"The game will now start between {player1.name}" +
                         $" and {player2.name}!");

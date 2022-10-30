@@ -8,18 +8,47 @@ namespace Projekt
 {
     class PointKeeper: IObserver
     {
-        GamePoint point;
-        public PointKeeper(GamePoint point)
+        public int score;
+        public GamePoint gamePoint;
+        public List<Player>? playerList;
+
+        public PointKeeper(GamePoint gamePoint)
         {
-          this.point = point;
+          this.gamePoint = gamePoint;
+          List<Player> playerList = new List<Player>();
+          this.playerList = playerList;
         }
-        public void UpdatePoint()
+        public void SavePlayer(Player player)
         {
-          this.point.GetPoint();
+          if(playerList is null)
+          {
+            throw new ArgumentNullException("PlayerList is null");
+          }
+          
+          playerList.Add(player);
         }
-        public void NewPoint()
+
+        public void UpdatePoint(IObserver observ)
         {
-            this.point.AddPoint();
+          string name = "";
+
+          if(playerList is null)
+          {
+            throw new ArgumentNullException("PlayerList is null");
+          }
+
+          foreach(Player p in playerList)
+          {
+            if(p.pointKeeper == observ)
+            {
+              name = p.name;
+            }
+          }
+          gamePoint.PrintScore(this.score, name);
+        }
+        public int NewPoint()
+        {
+            return this.score++;
         }
 
 

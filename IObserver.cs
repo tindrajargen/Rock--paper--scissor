@@ -8,7 +8,7 @@ namespace Projekt
 {
     interface IObserver
     {
-        void UpdatePoint();
-        void NewPoint();
+        void UpdatePoint(IObserver observ);
+        int NewPoint();
     }
 }
