@@ -82,16 +82,17 @@ namespace Projekt
 
         public void AddPoints(Player winner)
         {
-            winner.point.Notify2();
+            winner.point.NewPoint(winner);
         }
         private void ShowPoints()
         {
-            p1.point.Notify();
-            p2.point.Notify();
-            int points1 = p1.point.Score;
-            int points2 = p2.point.Score;
+            List<int> pointList = new List<int>();
 
-            Console.WriteLine($"\nScore board:\n{p1.name}: {points1}\n{p2.name}: {points2}\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Scoreboard:");
+            p1.point.Notify();
+            Console.WriteLine();
+            Console.ResetColor();
         }
         private void PrintErrorMessage(Player player)
         {

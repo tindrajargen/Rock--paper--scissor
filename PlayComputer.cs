@@ -6,22 +6,24 @@ namespace Projekt
     {
         Player player1;
         Player? computer;
+        GamePoint score;
 
-        public PlayComputer(Player player1)
+        public PlayComputer(Player player1, GamePoint score)
         {
             this.player1 = player1;
+            this.score = score;
         }
 
         public void RunningGame()
         {
             Turn turn = new Turn();
 
-            GamePoint scoreCom = new GamePoint();
-            PointKeeper scoreBoardCom = new PointKeeper(scoreCom);
-            scoreCom.Add(scoreBoardCom);
+            PointKeeper scoreBoardCom = new PointKeeper(score);
+            score.Add(scoreBoardCom);
 
-            Player computer = new Player("Computer", scoreCom);
+            Player computer = new Player("Computer", score, scoreBoardCom);
             this.computer = computer;
+            scoreBoardCom.SavePlayer(computer);
 
             List<int> highestPoint = turn.ReturnPoints(player1, computer);
             var count = 0;
@@ -35,11 +37,15 @@ namespace Projekt
             }
             Winner winner = new Winner(player1, computer);
             Console.WriteLine(winner.declareWinner());
+            Console.ResetColor();
         }
         private string MakingMove(Player p)
         {
-            Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
-            $"\n1.Rock\n2.Paper\n3.Scissors\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n{p.name} it is your turn,");
+            Console.ResetColor();
+            Console.WriteLine("\nwhat move do you want to make?\n1.Rock\n2.Paper\n3.Scissors\n");
+            
             string? move = Console.ReadLine();
 
             if(move is null)

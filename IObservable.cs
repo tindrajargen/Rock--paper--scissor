@@ -11,6 +11,6 @@ namespace Projekt
        void Add(IObserver observer);
        void Remove(IObserver observer);
        void Notify();
-       void Notify2();
+       void NewPoint(Player observ);
     }
 }

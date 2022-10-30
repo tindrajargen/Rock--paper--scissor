@@ -26,7 +26,7 @@ namespace Projekt
             if(p1 == null){
                 throw new ArgumentNullException("Player 1 is null");
             }
-            if(p1.point.Score == 3)
+            if(p1.pointKeeper.score == 3)
             {
                 this.winner = p1;
             }
@@ -43,6 +43,7 @@ namespace Projekt
             {
                 throw new ArgumentNullException("Winner is null.");
             }
+            Console.ForegroundColor = ConsoleColor.Red;
             return $"Congratulations {winner.name}, you won the game!";
         }
     }

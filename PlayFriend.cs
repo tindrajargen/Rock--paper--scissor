@@ -31,10 +31,14 @@ namespace Projekt
             }
             Winner winner = new Winner(player1, player2);
             Console.WriteLine(winner.declareWinner());
+            Console.ResetColor();
         }
         private string MakingMove(Player p){
-            Console.WriteLine($"\n{p.name} it is your turn, what move do you want to make?" +
-            $"\n1.Rock\n2.Paper\n3.Scissors\n");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"\n{p.name} it is your turn," );
+            Console.ResetColor();
+            Console.WriteLine("\nwhat move do you want to make?\n1.Rock\n2.Paper\n3.Scissors\n");
 
             string? move = Console.ReadLine();
 

@@ -8,11 +8,6 @@ namespace Projekt
 {
     class GamePoint: IObservable 
     {
-        public int Score;
-        public GamePoint()
-        {
-
-        }
         List<IObserver> Observer = new List<IObserver>();
         public void Add(IObserver observ)
         {
@@ -28,25 +23,25 @@ namespace Projekt
         {
           foreach(IObserver observ in this.Observer)
           {
-             observ.UpdatePoint();
+             observ.UpdatePoint(observ);
           }
         }
-        public void Notify2()
+        public void NewPoint(Player winner)
         {
-          foreach(IObserver observ in this.Observer)
-          {
-             observ.NewPoint();
-          }
+            foreach(IObserver observ in this.Observer)
+            {
+              if(observ == winner.pointKeeper)
+              {
+                  observ.NewPoint();
+              }
+            }
         }
 
-        public int GetPoint()
+        public void PrintScore(int score, string name)
         {
-            return this.Score;
+          Console.WriteLine($"{name}: {score}");
         }
 
-        public int AddPoint()
-        {
-          return this.Score++;
-        }
+
     }
 }
