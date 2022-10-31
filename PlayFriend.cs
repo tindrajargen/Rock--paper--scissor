@@ -143,6 +143,8 @@ namespace Projekt
                 
             }
             ICompare<ICompareRPS> outcome = new Outcome(player1, player2);
+            //ICompare<Move> outcome1 = outcome;
+        
             int winner = outcome.CheckOutcome(p1Move, p2Move);
             if(winner == 1)
             {
